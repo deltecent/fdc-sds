@@ -1,9 +1,12 @@
 # FDC-SDS Serial Disk Server for the Altair FDC+
 
+FDC-SDS is a Linux implentation of the [Serial Drive Communications Protocol](https://deramp.com/downloads/altair/hardware/fdc+/FDC%20Serial%20Server%20Protocol.txt) for the [FDC+ Enhanced Floppy Disk Controller for the Altair 8800](https://deramp.com/fdc_plus.html).
+
 ## Installation
 ```./configure
 make
-make install```
+make install
+```
 
 ## Baud Rate
 The FDC+ serial drive can operate at one of three baud rates: 403.2K, 460.8K, or 230.4K baud. FDC-SDS only supports 230.4K (default) and 460.8K.
