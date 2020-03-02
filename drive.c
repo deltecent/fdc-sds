@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
-#include <termios.h>
 #include <sys/types.h>
 #include <sys/time.h>
 #include <sys/select.h>
