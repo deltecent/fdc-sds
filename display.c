@@ -25,7 +25,7 @@
 #define BAUD_TEXT	"BAUD RATE:"
 
 #define COMMAND_LINE	PORT_LINE
-#define COMMAND_COL	BAUD_COL+sizeof(BAUD_TEXT)+10
+#define COMMAND_COL	BAUD_COL+sizeof(BAUD_TEXT)+8
 #define	COMMAND_TEXT	"COMMAND:"
 
 #define	BLOCK_LINE	COMMAND_LINE
@@ -33,12 +33,12 @@
 
 #define	DRIVE_LINE	4
 #define	DRIVE_COL	0
-#define	DRIVE_TEXT	"Disk -                                Disk Enable -  Head Load -  Track --  RO -"
+#define	DRIVE_TEXT	"Disk -                              Disk Enable -  Head Load -  Track ----  RO -"
 #define	DRIVE_NUM	5
 #define	DRIVE_FILE	8
-#define	DRIVE_ENA	50
-#define	DRIVE_HEAD	63
-#define	DRIVE_TRACK	72
+#define	DRIVE_ENA	48
+#define	DRIVE_HEAD	61
+#define	DRIVE_TRACK	70
 #define	DRIVE_RO	79
 
 #define ERROR_LINE	DRIVE_LINE + 5
@@ -146,10 +146,10 @@ void displayBlock(int drive, int track, int length)
 		printw("D:-- ");
 	}
 	if (track != -1) {
-		printw("T:%02d ", track);
+		printw("T:%04d ", track);
 	}
 	else {
-		printw("T:-- ");
+		printw("T:---- ");
 	}
 	if (length != -1) {
 		printw("L:%04d", length);
@@ -224,7 +224,7 @@ void displayTrack(int drive, int track)
 	}
 
 	move(DRIVE_LINE + drive, DRIVE_TRACK);
-	printw("%02d", track);
+	printw("%04d", track);
 
 	refresh();
 }
