@@ -15,4 +15,8 @@
 #define FALSE	!TRUE
 #endif
 
+extern int f_help;
+extern int f_verbose;
+extern int f_debug;
+
 #endif
