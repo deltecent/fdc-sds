@@ -21,13 +21,17 @@ int fdc_errno;
 
 int mountDrive(int drive, char *filename)
 {
+	int mode;
+
 	if (drive >= MAX_DRIVES) {
 		return -1;
 	}
 
+	mode = (drvstat[drive].readonly) ? O_RDONLY : O_RDWR;
+
 	strncpy(drvstat[drive].filename, filename, MAX_PATH);
 
-	if ((drvstat[drive].fd = open(filename, O_RDWR)) == -1) {
+	if ((drvstat[drive].fd = open(filename, mode)) == -1) {
 		drvstat[drive].mounted = FALSE;
 		displayMount(drive, "--ERROR--");
 		displayError("MOUNT", errno);
@@ -73,11 +77,9 @@ int writeProtect(int drive, int flag)
 		return -1;
 	}
 
-	if (drvstat[drive].mounted) {
-		drvstat[drive].readonly = (flag) ? TRUE : FALSE;
+	drvstat[drive].readonly = (flag) ? TRUE : FALSE;
 
-		displayRO(drive, flag);
-	}
+	displayRO(drive, flag);
 
 	return (0);
 }
