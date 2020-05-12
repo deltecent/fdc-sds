@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
-#include <termios.h>
 #include <ctype.h>
 #include <sys/types.h>
 #include <sys/time.h>
@@ -41,6 +40,12 @@ int openPort(char *device, int baud)
 	** Linux does not appear to support 403.2K
 	*/
 	switch (baud) {
+#ifdef _APPLE_
+		case 403200:
+			cfsetspeed(&newtio, B403200);
+			break;
+
+#endif
 		case 460800:
 			cfsetspeed(&newtio, B460800);
 			break;
@@ -103,6 +108,7 @@ int recvBuf(void *buffer, int length, int tsecs)
 	uint8_t lsb;
 	uint8_t msb;
 	uint16_t chksum;
+
 	/*
 	** Receive requested length
 	*/
@@ -166,11 +172,11 @@ int sendBuf(void *buffer, int length, int tsecs)
 		bytes = write(fd, buffer + sent, length - sent);
 
 		if (bytes == 0) {
-			displayError("WRITE TIMEOUT", errno);
+			displayError("SERIAL WRITE TIMEOUT", errno);
 			return -1;
 		}
-		else if (bytes == -1) {
-			displayError("WRITE", errno);
+		else if (bytes == -1 && errno != EAGAIN) {
+			displayError("SERIAL WRITE", errno);
 			return -1;
 		}
 
@@ -183,8 +189,8 @@ int sendBuf(void *buffer, int length, int tsecs)
 
 	bytes = write(fd, &lsb, 1);
 
-	if (bytes != 1) {
-		displayError("WRITE", errno);
+	if (bytes != 1 && errno != EAGAIN) {
+		displayError("SERIAL WRITE", errno);
 		return -1;
 	}
 
@@ -192,8 +198,8 @@ int sendBuf(void *buffer, int length, int tsecs)
 
 	bytes = write(fd, &msb, 1);
 
-	if (bytes != 1) {
-		displayError("WRITE", errno);
+	if (bytes != 1 && errno != EAGAIN) {
+		displayError("SERIAL WRITE", errno);
 		return -1;
 	}
 
