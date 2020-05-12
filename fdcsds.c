@@ -211,6 +211,7 @@ static int statCmd(crblk_t *cmd)
 		displayHead(drive, drvstat[drive].hdld);
 		displayTrack(drive, drvstat[drive].track);
 
+		displayBlock(drive, drvstat[drive].track, -1);
 	}
 	else {
 		for (i=0; i < MAX_DRIVES; i++) {
@@ -254,9 +255,7 @@ static int readCmd(crblk_t *cmd)
 		displayDebug(dbuf);
 	}
 
-	if (f_verbose) {
-		displayBlock(drive, track, length);
-	}
+	displayBlock(drive, track, length);
 
 	if (drive < MAX_DRIVES) {
 		drvstat[drive].track = track;
@@ -285,9 +284,7 @@ static int writCmd(crblk_t *cmd)
 	track = WORD(cmd->lsb1, cmd->msb1) & 0x0fff;
 	length = WORD(cmd->lsb2, cmd->msb2);
 
-	if (f_verbose) {
-		displayBlock(drive, track, length);
-	}
+	displayBlock(drive, track, length);
 
 	if (drive >= MAX_DRIVES) {
 		return(writResp(cmd, FDC_NOT_READY));
