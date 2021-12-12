@@ -13,6 +13,10 @@
 #include <sys/time.h>
 #include <sys/select.h>
 
+#ifndef B403200
+#define	B403200	403200
+#endif
+
 #ifndef B460800
 #define	B460800	460800
 #endif
