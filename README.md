@@ -4,6 +4,7 @@ FDC-SDS is a Linux implentation of the [Serial Drive Communications Protocol](ht
 
 ## Installation
 ```
+./autogen.sh
 ./configure
 make
 make install
