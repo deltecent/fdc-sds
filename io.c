@@ -40,6 +40,22 @@ int openPort(char *device, int baud)
 	** Linux does not appear to support 403.2K
 	*/
 	switch (baud) {
+		case 9600:
+			cfsetspeed(&newtio, B9600);
+			break;
+
+		case 19200:
+			cfsetspeed(&newtio, B19200);
+			break;
+
+		case 38400:
+			cfsetspeed(&newtio, B38400);
+			break;
+
+		case 57600:
+			cfsetspeed(&newtio, B57600);
+			break;
+
 #ifdef _APPLE_
 		case 403200:
 			cfsetspeed(&newtio, B403200);
