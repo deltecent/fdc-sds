@@ -5,7 +5,7 @@
 #include <stdint.h>
 
 #define	FDCSDS_NAME		"FDC+ Serial Drive Server"
-#define	FDCSDS_COPYRIGHT	"(c) 2020 Deltec Enterprises LLC"
+#define	FDCSDS_COPYRIGHT	"(c) 2024 Deltec Enterprises LLC"
 
 #ifndef TRUE
 #define	TRUE	1

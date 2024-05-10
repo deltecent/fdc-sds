@@ -1,4 +1,4 @@
-AC_INIT([FDC+ Serial Drive Server], 1.0)
+AC_INIT([FDC+ Serial Drive Server], 1.1)
 AM_INIT_AUTOMAKE
 AC_PROG_CC
 AC_CONFIG_FILES(Makefile)
