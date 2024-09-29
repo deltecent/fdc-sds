@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <ctype.h>
+#include <termios.h>
 #include <sys/types.h>
 #include <sys/time.h>
 #include <sys/select.h>
@@ -54,6 +55,10 @@ int openPort(char *device, int baud)
 
 		case 57600:
 			cfsetspeed(&newtio, B57600);
+			break;
+
+		case 76800:
+			cfsetspeed(&newtio, B76800);
 			break;
 
 #ifdef _APPLE_
