@@ -169,7 +169,8 @@ static void help()
 	printf("server [options] -p port\n\n");
 	printf("Options:\n");
 	printf("-[0-3] file\tMount disk image file to drive 0-3\n");
-	printf("\t\tThe FDC+ supports 330K 8 inch and 75K Minidisk images\n");
+	printf("\t\tThe FDC+ in serial disk mode supports 330K 8 inch,\n");
+	printf("\t\t75K Minidisk, and 8MB disk images.\n");
 	printf("-b baud\t\tSet serial port speed (default=%d)\n", baud);
 	printf("-p port\t\tSerial port (required)\n");
 	printf("-r [0-3]\tMake drive 0-3 read only\n");
