@@ -7,11 +7,11 @@ FDC-SDS is a Linux implentation of the [Serial Drive Communications Protocol](ht
 ./autogen.sh
 ./configure
 make
-make install
+sudo make install
 ```
 
 ## Baud Rate
-The FDC+ serial drive can operate at one of three baud rates: 403.2K, 460.8K, or 230.4K baud. FDC-SDS only supports 230.4K (default) and 460.8K.
+The FDC+ serial drive can operate at one of these baud rates: 403.2K, 460.8K, 230.4K, 76.8K, 38.4K, 19.2K, and 9600 baud. FDC-SDS only supports 230.4K (default), 460.8K, 76.8K, 38.4K, 19.2K, and 9600.
 
 If the baud rate is changed in the FDC-SDS server, the corresponding change must also be made on the FDC+. Baud rates are changed in the FDC+ using the monitor.
 
